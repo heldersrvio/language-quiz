@@ -1,0 +1,20 @@
+{
+  "name": "language-quiz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "coffee --join index.js --output public/ --compile src/*.coffee && cp src/*.html src/styles/*.css public/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heldersrvio/language-quiz.git"
+  },
+  "author": "Helder Sérvio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heldersrvio/language-quiz/issues"
+  },
+  "homepage": "https://github.com/heldersrvio/language-quiz#readme"
+}

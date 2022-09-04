@@ -263,5 +263,3 @@ Quizzes = [
 				meaning: "figurative"
 		]
 ]
-
-export default Quizzes
