@@ -1,3 +1,6 @@
+import styles from './styles/style.css'
+import Quizzes from './Quizzes.coffee'
+
 status =
     quiz: null
     question: 0
@@ -19,35 +22,80 @@ startQuiz = (code) ->
         quiz: getQuiz(code)
         question: 0
         score: 0
-    status
+    generateView()
 
-answerQuestion = (index, answer) ->
+answerQuestion = (answer) ->
     status.score = if answer == getCurrentQuestion().meaning then status.score + 1 else status.score
-    if question == status.quiz.questions.length
+    if status.question == status.quiz.questions.length - 1
         endQuiz()
     else
         status.question += 1
+    generateView()
 
 endQuiz = () ->
-    status.question = 0
+    status.question = -1
+
+reset = () ->
+    status =
+        quiz: null
+        question: 0
+        score: 0 
+    generateView()
 
 generateView = () ->
-    if status.quiz == null
-        quizQuestion = document.getElementById('quiz-question')
-        quizEnd = document.getElementById('quiz-end')
-        quizQuestion.classList.add('hidden')
-        quizEnd.classList.add('hidden')
+    unless status.quiz?
+        quizQuestion = document.getElementById("quiz-question")
+        quizEnd = document.getElementById("quiz-end")
+        quizQuestion.classList.add("hidden")
+        quizEnd.classList.add("hidden")
 
-        languages = document.getElementById('languages')
-        languages.classList.remove('hidden')
-        Quizzes.forEach((quiz) ->
-            button = document.createElement('button')
-            button.appendChild(document.createTextNode(quiz.name))
-            button.addEventListener('click', () ->
+        mainMenu = document.getElementById("main-menu")
+        mainMenu.classList.remove("hidden")
+
+        buttons = Array.from(document.querySelectorAll("#main-menu button"))
+        Quizzes.forEach((quiz, index) ->
+            button = buttons[index]
+            button.innerHTML = quiz.name
+            button.onclick = () ->
                 startQuiz(quiz.code)
-            )
-            languages.appendChild(button)
         )
+    else if status.question != -1
+        mainMenu = document.getElementById("main-menu")
+        quizEnd = document.getElementById("quiz-end")
+        mainMenu.classList.add("hidden")
+        quizEnd.classList.add("hidden")
+
+        quizQuestion = document.getElementById("quiz-question")
+        quizQuestion.classList.remove("hidden")
+
+        buttons = document.querySelectorAll(".choices button")
+        Array.from(buttons).forEach((button, index) ->
+            option = getCurrentQuestion().options[index]
+            button.innerHTML = option
+            button.onclick = () ->
+                answerQuestion(option)
+        )
+
+        h2 = document.querySelector("#quiz-question h2")
+        h2.innerHTML = "What does <strong>#{getCurrentQuestion().word}</strong> mean?"
+
+        span = document.querySelector("#quiz-question span")
+        span.innerHTML = "#{status.question + 1} / #{status.quiz.questions.length}"
+    else
+        mainMenu = document.getElementById("main-menu")
+        quizQuestion = document.getElementById("quiz-question")
+        mainMenu.classList.add("hidden")
+        quizQuestion.classList.add("hidden")
+
+        quizEnd = document.getElementById("quiz-end")
+        quizEnd.classList.remove("hidden")
+        h2 = document.querySelector("#quiz-end h2")
+        h2.innerHTML = if status.score >= 9 then "Congratulations! You've scored #{status.score}/#{status.quiz.questions.length}" else "You've scored #{status.score}/#{status.quiz.questions.length}"
+
+        button = document.querySelector("#quiz-end button")
+        button.onclick = () ->
+            reset()
+        
 
 generateView()
         

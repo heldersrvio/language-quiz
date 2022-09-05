@@ -76,7 +76,7 @@ Quizzes = [
 			,
 				word: "arto"
 				options: ["nose", "bone", "limb", "ear", "head"]
-				meaning: "ear"
+				meaning: "limb"
 			,
 				word: "buio"
 				options: ["dark", "bright", "fear", "misunderstanding", "curse"]
@@ -263,3 +263,5 @@ Quizzes = [
 				meaning: "figurative"
 		]
 ]
+
+export default Quizzes
