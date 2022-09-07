@@ -1,3 +1,173 @@
+:root {
+	--background-color: #ae1919;
+	--text-color: #ffff;
+	--auxiliary-color: #b3b3b3;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
+
+#main-menu {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	gap: 70px;
+}
+
+#quiz-question, #quiz-end {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+#quiz-question h2 {
+	display: block;
+	text-transform: uppercase;
+	font-size: 25px;
+	font-weight: 500;
+	margin-bottom: 40px;
+}
+
+#quiz-question .choices {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+#quiz-question span {
+	color: var(--auxiliary-color);
+}
+
+#quiz-question button {
+	background-color: transparent;
+	font-size: 15px;
+	color: var(--text-color);
+	border: 2px solid var(--text-color);
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 3px 20px;
+}
+
+#quiz-end button {
+	background-color: transparent;
+	font-size: 25px;
+	color: var(--text-color);
+	border: 3px solid var(--text-color);
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#quiz-question button:hover {
+	background-color: var(--text-color);
+	color: var(--background-color);
+}
+
+#main-menu button {
+	background-color: transparent;
+	font-size: 20px;
+	color: var(--text-color);
+	border: 3px solid var(--text-color);
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#main-menu button:hover, #quiz-end button:hover {
+	background-color: var(--text-color);
+	color: var(--background-color);
+}
+
+#main-menu #languages {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 15px;
+	row-gap: 15px;
+}
+
+#main-menu h1 {
+    animation: pulse 14s;
+    animation-iteration-count: infinite;
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: 700;
+}
+
+#quiz-end h2 {
+	display: block;
+	text-transform: uppercase;
+	font-size: 40px;
+	font-weight: 700;
+	margin-bottom: 50px;
+}
+
+@keyframes pulse {
+	0% {
+	color: var(--text-color);
+	}
+	8.385% {
+		color: var(--background-color);
+	}
+	16.67% {
+		color: var(--text-color);
+	}
+	25.055% {
+		color: var(--background-color);
+	}
+	33.33% {
+		color: var(--text-color);
+	}
+	41.715% {
+		color: var(--background-color);
+	}
+	50% {
+		color: var(--text-color);
+	}
+	58.385% {
+		color: var(--background-color);
+	}
+	66.67% {
+		color: var(--text-color);
+	}
+	75.055% {
+		color: var(--background-color);
+	}
+	83.33% {
+		color: var(--text-color);
+	}
+	91.715% {
+		color: var(--background-color);
+	}
+	100% {
+		color: var(--text-color);
+	}
+}
+
+#main-menu h1:after {
+	content: '';
+	animation: spin 14s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+  0% { content: 'Språkquiz'; }
+  16.67% { content: 'Quiz de Langues'; }
+  33.33% { content: 'Quiz di Lingue'; }
+  50% { content: '言語のクイズ'; }
+  66.67% { content: '語言測驗'; }
+  83.33% { content: 'Prueba de idiomas'; }
+  100% { content: 'Språkquiz'; }
+}
+
 .hidden {
-    display: none;
+    display: none !important;
 }
