@@ -2,6 +2,8 @@
 
 A simple language quiz application written in [CoffeeScript](https://coffeescript.org) featuring 6 different languages to choose from. You're asked to choose the meaning of each word in English. The questions and options are hard-coded.
 
+[Check it out](https://heldersrvio.github.io/language-quiz/).
+
 ## Run it locally
 
 Ensure you have Node.js, nvm and npm installed, then do:
